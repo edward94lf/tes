@@ -2,8 +2,106 @@
 /**
  *
  */
+
 class Menu_model extends CI_Model
 {
+
+  public function updatebook()
+  {
+    $data = file_get_contents('application/controllers/api/tes.json');
+    $menu = json_decode($data,true);
+    $menu = $menu["gambar"];
+    foreach ($menu as $row):
+      if(isset($row["writer"])||isset($row["offer"])||isset($row["grade"])||isset($row["price"]))
+      {
+        if(isset($row["writer"])){
+          if(isset($row["grade"]))
+          {
+            $data = array(
+              'id_book' =>'',
+              'category' => $row["category"],
+              'name'  => $row["name"],
+              'grade'  => $row["grade"],
+              'writer' => $row["writer"],
+              'offer'  => $row["offer"],
+              'price'  => substr($row["price"],1,strlen($row["price"])),
+              'gambar'  => $row["image"]
+              );
+          }
+          else {
+            if(isset($row["offer"]))
+            {
+              $data = array(
+                'id_book' =>'',
+                'category' => $row["category"],
+                'name'  => $row["name"],
+                'grade'  => 0,
+                'writer' => $row["writer"],
+                'offer'  => $row["offer"],
+                'price'  => substr($row["price"],1,strlen($row["price"])),
+                'gambar'  => $row["image"]
+                );
+            }
+            else {
+              $data = array(
+                'id_book' =>'',
+                'category' => $row["category"],
+                'name'  => $row["name"],
+                'grade'  => 0,
+                'writer' => $row["writer"],
+                'offer'  => '',
+                'price'  => substr($row["price"],1,strlen($row["price"])),
+                'gambar'  => $row["image"]
+                );
+            }
+
+          }
+        }
+        else
+        {
+          $data = array(
+            'id_book' =>'',
+            'category' => $row["category"],
+            'name'  => $row["name"],
+            'grade'  => $row["grade"],
+            'writer' => '',
+            'offer'  => $row["offer"],
+            'price'  => substr($row["price"],1,strlen($row["price"])),
+            'gambar'  => $row["image"]
+            );
+        }
+      }
+      else if(isset($row["grade"]))
+      {
+        $data = array(
+          'id_book' =>'',
+          'category' => $row["category"],
+          'name'  => $row["name"],
+          'grade'  => $row["grade"],
+          'writer' => $row["writer"],
+          'offer'  => $row["offer"],
+          'price'  => substr($row["price"],1,strlen($row["price"])),
+          'gambar'  => $row["image"]
+          );
+      }
+      else {
+        $data = array(
+          'id_book' =>'',
+          'category' => $row["category"],
+          'name'  => $row["name"],
+          'grade'  => 0,
+          'writer' => '',
+          'offer'  => 0,
+          'price'  => 0,
+          'gambar'  => $row["image"]
+          );
+      }
+
+        $query = $this->db->set($data)->get_compiled_insert('book');
+        $this->db->query($query);
+    endforeach;
+
+    }
   public function getallbook()
   {
     return $this->db->get('book')->result_array();

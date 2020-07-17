@@ -1373,10 +1373,11 @@
                     </div>
                   </div>
                 </div>
+                <button type="button" class="btn btn-primary" id="masukdata">Masukkan Database</button>
                 <table class="table table-borderless">
                     <thead>
                       <tr>
-                        <th scope="col">No</th>
+                        <th scope="col">ID</th>
                         <th scope="col">Judul</th>
                         <th scope="col">Kategori</th>
                         <th scope="col">Grade</th>
@@ -1388,13 +1389,30 @@
                     </thead>
                     <tbody id="tabel">
                       <?php
-                      $data=json_encode($this->db->get('book')->result_array());
-                      $datat[] = json_decode($data,true);
-                      $datat = $datat["0"];
+                      $per_hal=10;
+                     $hal_skarang=1;
+                     if(isset($_GET['page']))
+                     {
+                       $hal_skarang=$_GET['page'];
+                       if($hal_skarang>1)
+                       {
+                       $hal_skarang=$hal_skarang;
+                       }
+                       else
+                       {
+                         $hal_skarang=1;
+                       }
+                     }
+                     $query = $this->db->get('book');
+                     $total = $query->num_rows();
+                     $total_hal=ceil($total/$per_hal);
+                     $awal=($hal_skarang-1)*$per_hal;
+                     $data=json_encode($this->db->get('book', $per_hal,$awal)->result_array());
+                     $datat[] = json_decode($data,true);
+                     $datat = $datat["0"];
                       foreach($datat as $dat) :
                       ?>
                       <tr>
-
                         <th scope="row"><?php echo $dat['id_book']; ?></th>
                         <td><?php echo $dat['name']; ?></td>
                         <td><?php echo $dat['category']; ?></td>
@@ -1407,9 +1425,44 @@
                       <?php
                     endforeach;
                        ?>
+
                     </tbody>
                   </table>
-                  
+                  <?php if(isset($total_hal)){
+                 if($total_hal>1){
+                 ?>
+                  <nav aria-label="Page navigation example">
+                 <div class="pagination justify-content-end">
+                 <?php
+                 if($hal_skarang>1){
+                 ?>
+                 <li class="page-item">
+                 <a class="page-link" href="?page=<?php echo $hal_skarang-1 ?>" tabindex="-1">Previous</a>
+                 </li>
+                 <?php }
+                 else{
+                 ?>
+                 <li class="page-item disabled">
+                 <a class="page-link" href="#" tabindex="-1">Previous</a>
+                 </li>
+                 <?php }
+                 if($hal_skarang<$total_hal){
+                 ?>
+                 <li class="page-item">
+                 <a class="page-link" href="?page=<?php echo $hal_skarang+1 ?>">Next</a>
+                 </li>
+                 <?php }
+                 else{
+                 ?>
+                 <li class="page-item disabled">
+                 <a class="page-link" href="#">Next</a>
+                 </li>
+                 <?php } ?>
+               </div>
+                 </nav>
+                 <?php }
+                 }
+                 ?>
               </div>
             <div id="zg-left-col" class="a-fixed-left-grid-col a-col-left" style="width:200px;margin-left:-200px;float:none;">
 

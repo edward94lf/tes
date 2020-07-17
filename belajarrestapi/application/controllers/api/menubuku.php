@@ -111,5 +111,15 @@ class menubuku extends REST_Controller
       ], REST_Controller::HTTP_NOT_FOUND);
     }
   }
+  public function index_post()
+  {
+
+      $menubuku = $this->menu->updatebook();
+      $message = [
+          'message' => 'All Resources Added'
+      ];
+      $this->set_response($message, REST_Controller::HTTP_CREATED); // CREATED (201) being the HTTP response code
+
+  }
 
 }
