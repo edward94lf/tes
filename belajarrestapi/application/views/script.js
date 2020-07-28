@@ -1,14 +1,3 @@
-$('#masukdata').on('click',function(){
-  $.ajax({
-    url : 'http://localhost/api/menubuku',
-    type: 'post',
-    dataType:'json',
-    success: function(){
-      alert("Data Berhasil Diinput");
-      location.reload();
-    }
-  });
-});
 $('#Cari').on('click',function(){
   $('#tabel').html('');
   $.ajax({

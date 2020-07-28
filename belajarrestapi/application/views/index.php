@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html class="a-no-js" data-19ax5a9jf="dingo">
     <head>
@@ -1373,7 +1372,44 @@
                     </div>
                   </div>
                 </div>
-                <button type="button" class="btn btn-primary" id="masukdata">Masukkan Database</button>
+                <button type="button" class="btn btn-primary" type="submit" id="masukdata">Masukkan Database</button>
+
+
+<?php
+/*include('simple_html_dom.php');
+$context = stream_context_create(array(
+    'http' => array(
+        'header' => array('User-Agent: Mozilla/5.0 (Windows; U; Windows NT 6.1; rv:2.2) Gecko/20110201'),
+    ),
+));
+
+//$ht = file_get_html("https://www.amazon.com/best-sellers-books-Amazon/zgbs/books/ref=zg_bs_nav_0");
+$url = "https://www.amazon.com/best-sellers-books-Amazon/zgbs/books/ref=zg_bs_nav_0";
+$html = new simple_html_dom();
+$html ->load_file($url,false,$context);
+//$html = file_get_contents($url, false, $context);
+foreach($html->find("li[class=zg-item-immersion]")as $link){
+  $item['nama'] = $link->find("a[class=a-link-normal]",0)->plaintext;
+  $nama = html_entity_decode(trim($item['nama']));
+  //echo $nama."</br>";
+  $data = array(
+    'id_book' =>'',
+    'category' => '',
+    'name'  => $nama,
+    'grade'  => 0,
+    'writer' => '',
+    'offer'  => 0,
+    'price'  => 0,
+    'gambar'  => ''
+    );
+  $query = $this->db->set($data)->get_compiled_insert('book');
+  $this->db->query($query);
+}
+
+//die();
+*/
+?>
+
                 <table class="table table-borderless">
                     <thead>
                       <tr>
@@ -1419,7 +1455,7 @@
                         <td><?php echo $dat['grade'];?></td>
                         <td><?php echo $dat['writer'];?></td>
                         <td><?php echo $dat['offer'];?></td>
-                        <td><?php echo $dat['price'];?></td>
+                        <td><?php echo '$ ',$dat['price'];?></td>
                         <td><img src="<?php echo $dat['gambar'];?>" class="img-thumbnail" style="height:200px;width:200px"></td>
                       </tr>
                       <?php
@@ -1464,7 +1500,8 @@
                  }
                  ?>
               </div>
-            <div id="zg-left-col" class="a-fixed-left-grid-col a-col-left" style="width:200px;margin-left:-200px;float:none;">
+
+              <div id="zg-left-col" class="a-fixed-left-grid-col a-col-left" style="width:200px;margin-left:-200px;float:none;">
 
 <div id="ape_RankedItems_left-ad-sky-1_desktop_placement" class="copilot-secure-display celwidget  text/x-dacx-safeframe" cel_widget_id="adplacements:RankedItems:left-ad-sky-1:desktop" data-campaign="13791" style="width: 160px;" data-ad-details='{"slot" :"RankedItems_left-ad-sky-1_desktop","pageType": "RankedItems","subPageType":  "desktop","slotName" :"left-ad-sky-1","src" : "https://aax-us-east.amazon-adsystem.com/x/getad?c=100&pt=RankedItems&src=500&sz=160x600&slot=left-ad-sky-1&u=https%3A%2F%2Fwww.amazon.com%2Fgp%2Fbestsellers%2Fbooks&ad-sid=010124a37bc223c69964468373d02f132bd3092e78c0927a931976fa8b752fdee643&pj=%7B%22st%22%3A%22amzn.us.ri.default%22%2C%22prid%22%3A%2201018f0da62b3fcae255ea3f81f076e8b09ffa647e0374971ed85ba8b68dcb87eb21%22%2C%22x-amz-portal-i18n-preferences%22%3A%7B%22currency%22%3A%22USD%22%2C%22language%22%3A%22en_US%22%7D%7D","adServer" :"cs","campaignId" :  "13791","arid" :"43f86d77557e4198ad6b12b3e631f940","placementId": "04c95708-879e-4272-bebb-ff65638db581","size" :{"width": "160px","height" : "600px"},"allowedSizes" :[],"allowedDomains" :  ["g-ecx.images-amazon.com"],"aanParams" :   "site%3Damazon.us%3Bpt%3DRankedItems%3Bslot%3Dleft-ad-sky-1%3Bpid%3D0%3Barid%3D43f86d77557e4198ad6b12b3e631f940","loadAfter" :   "windowOnLoad","extraDelay" :  0,"iframeExtraStyle": "","iframeClass":  "","adPixels": [],"adPixelDelay": "0","aaxInstrPixelUrl": "","serverSideFetchAd": "false","enableAdBlockerDetector": false,"disableResizeFunc": true,"fallbackStaticAdImgUrl": "","fallbackStaticAdClickUrl": "","fallbackStaticAdExtraStyle": "","adFeedbackInfo": {"endPoint": "/gp/aq-feedback/lazyLoad/handler/af-link-handler.html","boolFeedback": true,"slugText": "Sponsored"},"adPlacementMetaData": {"pageUrl": "aHR0cHM6Ly93d3cuYW1hem9uLmNvbS9ncC9iZXN0c2VsbGVycy9ib29rcz9yZWYlNUY9emclNUZicyU1Rm5hdiU1RjA=","adElementId": "ape_RankedItems_left-ad-sky-1_desktop_placement","pageType": "RankedItems","slotName": "left-ad-sky-1"},"adCreativeMetaData": {"adNetwork": "cs"},"advertisementStyle": {"position": "absolute","top": "2px","right": "0px","display": "inline-block","font": "normal 11px Arial","color": "grey"},"feedbackDivStyle": {"position": "relative","height": "14px","top": "2px"},"viewabilityStandards": [{"p": 0, "t": 0, "def": "amzn"}, {"p": 50, "t": 1, "def": "iab"}, {"p": 100, "t": 1, "def": "groupm"}],"ajaxWeblabTriggerId": "","abpStatus": "0","abpAcceptable": "false","programIdsToCollapse": [],"DAsfUrl":"https://images-na.ssl-images-amazon.com/images/G/01/ape/sf/desktop/DAsf-1.50.996289c._V428881811_.js"}' aria-hidden="true"></div>
 </div></div></div></div>
@@ -2062,10 +2099,26 @@
     </noscript>
 
 </div>
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous">
+</script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 <script src="application/views/script.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+  loadData();
+});
+function loadData(){
+  $('#masukdata').on('click',function(){
+    $.get('data.php',function(){
+      alert("Mantap");
+      location.reload();
+    });
+  });
+
+}
+
+</script>
 </body>
 <!-- body -->
 </html>
