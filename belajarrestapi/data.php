@@ -44,7 +44,7 @@
     //$i+=1;
   //  echo $nama. "</br>".$category. "</br>".$writer. "</br>".$offer."</br>".$price."</br>".$gambar."</br>".$grade."</br>";
 
-  $connection = mysqli_connect('localhost', 'root', '','amazon');
+  //$connection = mysqli_connect('localhost', 'root', '','amazon');
   //$query = "INSERT INTO book VALUES (0, '$category', '$nama','$grade','$writer','$offer',''$price,'$gambar')";
   $result = mysqli_query($connection, "INSERT INTO book VALUES (0, '$category', '$nama',$grade,'$writer','$offer','$price','$gambar')");
 
