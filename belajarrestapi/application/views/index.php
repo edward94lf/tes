@@ -1450,7 +1450,7 @@ foreach($html->find("li[class=zg-item-immersion]")as $link){
                       ?>
                       <tr>
                         <th scope="row"><?php echo $dat['id_book']; ?></th>
-                        <td><?php echo $dat['name']; ?></td>
+                        <td><?php echo substr($dat['name'],0,20)."..."; ?></td>
                         <td><?php echo $dat['category']; ?></td>
                         <td><?php echo $dat['grade'];?></td>
                         <td><?php echo $dat['writer'];?></td>
